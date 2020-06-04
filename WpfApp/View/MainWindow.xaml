@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:WpfApp.ViewModel"
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-        Title="Notepad" Height="1080" Width="1920" WindowStyle="SingleBorderWindow" WindowStartupLocation="Manual">
+        Title="Playground" Height="1080" Width="1920" WindowStyle="SingleBorderWindow" WindowStartupLocation="Manual">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
