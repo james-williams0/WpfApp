@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,10 @@ namespace WpfApp.ViewModel.Interfaces
 {
     public interface INavigatable
     {
-        void OnNavigateTo();
+      public IBaseTheme WindowTheme { get; set; }
+  
+      void OnNavigateTo();
 
-        void OnNavigateAway();
+      void OnNavigateAway();
     }
 }
