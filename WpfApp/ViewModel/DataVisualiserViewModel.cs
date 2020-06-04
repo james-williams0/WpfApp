@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using WpfApp.ViewModel.Helper;
@@ -8,7 +9,16 @@ namespace WpfApp.ViewModel
 {
     public class DataVisualiserViewModel : OnPropertyChangedImplementation, INavigatable
     {
-        public void OnNavigateAway()
+
+      private IBaseTheme windowTheme;
+
+      public IBaseTheme WindowTheme
+      {
+         get { return windowTheme; }
+         set { windowTheme = value; }
+      }
+
+      public void OnNavigateAway()
         {
             throw new NotImplementedException();
         }

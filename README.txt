@@ -1,0 +1,1 @@
+This repo uses xaml material designs the docs can be found here https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki

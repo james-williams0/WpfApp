@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -12,132 +13,137 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-    public class NotepadViewModel : OnPropertyChangedImplementation, INavigatable
-    {
-        public bool Bold { get; set; } = false;
+   public class NotepadViewModel : OnPropertyChangedImplementation, INavigatable
+   {
+      public bool Bold { get; set; } = false;
 
-        public bool Underline { get; set; } = false;
+      public bool Underline { get; set; } = false;
 
-        public bool Italic { get; set; } = false;
+      public bool Italic { get; set; } = false;
 
-        private SolidColorBrush boldBackground = Brushes.LightGray;
+      private IBaseTheme windowTheme;
 
-        public SolidColorBrush BoldBackground
-        {
-            get { return boldBackground; }
-            set
-            {
-                boldBackground = value;
-                OnPropertyChanged();
-            }
-        }
+      public IBaseTheme WindowTheme
+      {
+         get { return windowTheme; }
+         set { windowTheme = value; }
+      }
 
-        private SolidColorBrush underlineBackground = Brushes.LightGray;
+      private SolidColorBrush boldBackground = Brushes.LightGray;
 
-        public SolidColorBrush UnderlineBackground
-        {
-            get { return underlineBackground; }
-            set
-            {
-                underlineBackground = value;
-                OnPropertyChanged();
-            }
-        }
+      public SolidColorBrush BoldBackground
+      {
+         get { return boldBackground; }
+         set
+         {
+            boldBackground = value;
+            OnPropertyChanged();
+         }
+      }
 
-        private SolidColorBrush italicBackground = Brushes.LightGray;
+      private SolidColorBrush underlineBackground = Brushes.LightGray;
 
-        public SolidColorBrush ItalicBackground
-        {
-            get { return italicBackground; }
-            set
-            {
-                italicBackground = value;
-                OnPropertyChanged();
-            }
-        }
+      public SolidColorBrush UnderlineBackground
+      {
+         get { return underlineBackground; }
+         set
+         {
+            underlineBackground = value;
+            OnPropertyChanged();
+         }
+      }
 
-        private RichTextBox mainRTBProperty;
+      private SolidColorBrush italicBackground = Brushes.LightGray;
 
-        public RichTextBox MainRTBProperty
-        {
-            get { return mainRTBProperty; }
-            set
-            {
-                mainRTBProperty = value;
-                OnPropertyChanged();
-            }
-        }
+      public SolidColorBrush ItalicBackground
+      {
+         get { return italicBackground; }
+         set
+         {
+            italicBackground = value;
+            OnPropertyChanged();
+         }
+      }
 
-        public NotepadViewModel(RichTextBox mainRTB)
-        {
-            mainRTBProperty = mainRTB;
-        }
+      private RichTextBox mainRTBProperty;
 
-        public ICommand BoldToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleBold()); }
-        }
+      public RichTextBox MainRTBProperty
+      {
+         get { return mainRTBProperty; }
+         set
+         {
+            mainRTBProperty = value;
+            OnPropertyChanged();
+         }
+      }
 
-        public void ToggleBold()
-        {
-            Bold = !Bold;
-            EditingCommands.ToggleBold.Execute(null, mainRTBProperty);
-            if (Bold)
-            {
-                BoldBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                BoldBackground = Brushes.LightGray;
-            }
-        }
+      public NotepadViewModel(RichTextBox mainRTB)
+      {
+         mainRTBProperty = mainRTB;
+         windowTheme = Theme.Dark;
+      }
 
-        public ICommand UnderlineToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleUnderline()); }
-        }
+      public ICommand BoldToggle
+      {
+         get { return new RelayCommand<object>(p => ToggleBold()); }
+      }
 
-        public void ToggleUnderline()
-        {
-            Underline = !Underline;
-            EditingCommands.ToggleUnderline.Execute(null, mainRTBProperty);
-            if (Underline)
-            {
-                UnderlineBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                UnderlineBackground = Brushes.LightGray;
-            }
-        }
+      public void ToggleBold()
+      {
+         Bold = !Bold;
+         EditingCommands.ToggleBold.Execute(null, mainRTBProperty);
+         if (Bold)
+         {
+            BoldBackground = Brushes.DarkGray;
+         }
+      }
 
-        public ICommand ItalicToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleItalic()); }
-        }
+      public ICommand UnderlineToggle
+      {
+         get { return new RelayCommand<object>(p => ToggleUnderline()); }
+      }
 
-        public void ToggleItalic()
-        {
-            Italic = !Italic;
-            EditingCommands.ToggleItalic.Execute(null, mainRTBProperty);
-            if (Italic)
-            {
-                ItalicBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                ItalicBackground = Brushes.LightGray;
-            }
-        }
+      public void ToggleUnderline()
+      {
+         Underline = !Underline;
+         EditingCommands.ToggleUnderline.Execute(null, mainRTBProperty);
+         if (Underline)
+         {
+            UnderlineBackground = Brushes.DarkGray;
+         }
+         else
+         {
+            UnderlineBackground = Brushes.LightGray;
+         }
+      }
 
-        public void OnNavigateTo()
-        {
-            throw new NotImplementedException();
-        }
+      public ICommand ItalicToggle
+      {
+         get { return new RelayCommand<object>(p => ToggleItalic()); }
+      }
 
-        public void OnNavigateAway()
-        {
-            throw new NotImplementedException();
-        }
-    }
+      public void ToggleItalic()
+      {
+         Italic = !Italic;
+         EditingCommands.ToggleItalic.Execute(null, mainRTBProperty);
+         if (Italic)
+         {
+            ItalicBackground = Brushes.DarkGray;
+         }
+         else
+         {
+            ItalicBackground = Brushes.LightGray;
+         }
+      }
+
+      public void OnNavigateTo()
+      {
+         throw new NotImplementedException();
+      }
+
+      public void OnNavigateAway()
+      {
+         throw new NotImplementedException();
+      }
+   }
 }
