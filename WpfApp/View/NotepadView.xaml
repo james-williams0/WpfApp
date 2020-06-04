@@ -6,6 +6,13 @@
              xmlns:vm="clr-namespace:WpfApp.ViewModel"
              xmlns:local="clr-namespace:WpfApp.View"
              mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             materialDesign:ThemeAssist.Theme="{Binding WindowTheme}"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
@@ -31,15 +38,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="10,10,10,5">
-            <Button Width="64" Height="64" Margin="0,0,5,0" Content="B" FontSize="24" Command="{Binding BoldToggle}" Background="{Binding BoldBackground}">
-                <Button.InputBindings>
+            <ToggleButton Margin="0,0,5,0" Content="B" FontSize="24" Command="{Binding BoldToggle}" Style="{DynamicResource MaterialDesignActionToggleButton}">
+                <ToggleButton.InputBindings>
                     <KeyBinding 
                         Gesture="Ctrl+B"
                         Command="{Binding BoldToggle}"/>
-                </Button.InputBindings>
-            </Button>
-            <Button Width="64" Height="64" Margin="5,0,5,0" Content="U" FontSize="24" Command="{Binding UnderlineToggle}" Background="{Binding UnderlineBackground}"/>
-            <Button Width="64" Height="64" Margin="5,0,0,0" Content="I" FontSize="24" Command="{Binding ItalicToggle}" Background="{Binding ItalicBackground}"/>
+                </ToggleButton.InputBindings>
+            </ToggleButton>
+            <ToggleButton  Margin="5,0,5,0" Content="U" FontSize="24" Command="{Binding UnderlineToggle}" Style="{DynamicResource MaterialDesignActionToggleButton}" />
+            <ToggleButton  Margin="5,0,0,0" Content="I" FontSize="24" Command="{Binding ItalicToggle}" Style="{DynamicResource MaterialDesignActionToggleButton}"/>
         </StackPanel>
 
         <Separator Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="5,5,5,5"/>

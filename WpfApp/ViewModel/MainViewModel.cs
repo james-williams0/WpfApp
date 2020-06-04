@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -13,45 +14,51 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-    public class MainViewModel : OnPropertyChangedImplementation
-    {
-        public TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
+   public class MainViewModel : OnPropertyChangedImplementation
+   {
+      public TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
 
-        private INavigatable currentView;
+      private INavigatable currentView;
+      private IBaseTheme theme;
 
-        public INavigatable CurrentView
-        {
-            get { return currentView; }
-            set
-            {
-                currentView = value;
-                OnPropertyChanged();
-            }
-        }
+      public INavigatable CurrentView
+      {
+         get { return currentView; }
+         set
+         {
+            currentView = value;
+            OnPropertyChanged();
+         }
+      }
 
+      public IBaseTheme WindowTheme
+      {
+         get { return theme; }
+         set { theme = value; OnPropertyChanged(); }
+      }
+      public MainViewModel()
+      {
+         WindowTheme = Theme.Dark;
+         CurrentView = Factory.Notepad;
+      }
+      public ICommand NavigateToVisualiser
+      {
+         get { return new RelayCommand<object>(p => VisualiserNavigate()); }
+      }
 
-        public MainViewModel()
-        {
-            CurrentView = Factory.Notepad;
-        }
-        public ICommand NavigateToVisualiser
-        {
-            get { return new RelayCommand<object>(p => VisualiserNavigate()); }
-        }
+      public void VisualiserNavigate()
+      {
+         CurrentView = Factory.DataVisualiser;
+      }
 
-        public void VisualiserNavigate()
-        {
-            CurrentView = Factory.DataVisualiser;
-        }
+      public ICommand NavigateToHome
+      {
+         get { return new RelayCommand<object>(p => HomeNavigate()); }
+      }
 
-        public ICommand NavigateToHome
-        {
-            get { return new RelayCommand<object>(p => HomeNavigate()); }
-        }
-
-        public void HomeNavigate()
-        {
-            CurrentView = Factory.Notepad;
-        }
-    }
+      public void HomeNavigate()
+      {
+         CurrentView = Factory.Notepad;
+      }
+   }
 }
