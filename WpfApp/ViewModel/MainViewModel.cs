@@ -7,134 +7,51 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using WpfApp.Model;
+using WpfApp.ViewModel.Helper;
+using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : OnPropertyChangedImplementation
     {
-        public bool Bold { get; set; } = false;
+        public TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
 
-        public bool Underline { get; set; } = false;
+        private INavigatable currentView;
 
-        public bool Italic { get; set; } = false;
-
-        private SolidColorBrush boldBackground = Brushes.LightGray;
-
-        public SolidColorBrush BoldBackground
+        public INavigatable CurrentView
         {
-            get { return boldBackground; }
+            get { return currentView; }
             set
             {
-                boldBackground = value;
+                currentView = value;
                 OnPropertyChanged();
             }
         }
 
-        private SolidColorBrush underlineBackground = Brushes.LightGray;
 
-        public SolidColorBrush UnderlineBackground
+        public MainViewModel()
         {
-            get { return underlineBackground; }
-            set
-            {
-                underlineBackground = value;
-                OnPropertyChanged();
-            }
+            CurrentView = Factory.Notepad;
+        }
+        public ICommand NavigateToVisualiser
+        {
+            get { return new RelayCommand<object>(p => VisualiserNavigate()); }
         }
 
-        private SolidColorBrush italicBackground = Brushes.LightGray;
-
-        public SolidColorBrush ItalicBackground
+        public void VisualiserNavigate()
         {
-            get { return italicBackground; }
-            set
-            {
-                italicBackground = value;
-                OnPropertyChanged();
-            }
+            CurrentView = Factory.DataVisualiser;
         }
 
-        private RichTextBox mainRTBProperty;
-
-        public RichTextBox MainRTBProperty
+        public ICommand NavigateToHome
         {
-            get { return mainRTBProperty; }
-            set
-            {
-                mainRTBProperty = value;
-                OnPropertyChanged();
-            }
+            get { return new RelayCommand<object>(p => HomeNavigate()); }
         }
 
-        public MainViewModel(RichTextBox mainRTB)
+        public void HomeNavigate()
         {
-            mainRTBProperty = mainRTB;
+            CurrentView = Factory.Notepad;
         }
-
-        public ICommand BoldToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleBold()); }
-        }
-
-        public void ToggleBold()
-        {
-            Bold = !Bold;
-            EditingCommands.ToggleBold.Execute(null, mainRTBProperty);
-            if (Bold)
-            {
-                BoldBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                BoldBackground = Brushes.LightGray;
-            }
-        }
-
-        public ICommand UnderlineToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleUnderline()); }
-        }
-
-        public void ToggleUnderline()
-        {
-            Underline = !Underline;
-            EditingCommands.ToggleUnderline.Execute(null, mainRTBProperty);
-            if (Underline)
-            {
-                UnderlineBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                UnderlineBackground = Brushes.LightGray;
-            }
-        }
-
-        public ICommand ItalicToggle
-        {
-            get { return new RelayCommand<object>(p => ToggleItalic()); }
-        }
-
-        public void ToggleItalic()
-        {
-            Italic = !Italic;
-            EditingCommands.ToggleItalic.Execute(null, mainRTBProperty);
-            if (Italic)
-            {
-                ItalicBackground = Brushes.DarkGray;
-            }
-            else
-            {
-                ItalicBackground = Brushes.LightGray;
-            }
-        }
-
-        #region On property changed implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }
