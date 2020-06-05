@@ -9,7 +9,6 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
-        materialDesign:ThemeAssist.Theme="{Binding WindowTheme}"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         mc:Ignorable="d"
@@ -21,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <Grid.Resources>
@@ -30,12 +30,19 @@
             <DataTemplate DataType="{x:Type vm:DataVisualiserViewModel}">
                 <local:DataVisualiser/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <local:SettingsView/>
+            </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentView}" Grid.Row="1" />
 
         <StackPanel Orientation="Horizontal" Margin="10">
             <Button Content="{materialDesign:PackIcon Kind=Home}" Command="{Binding NavigateToHome}" ToolTip="Home" Margin="0,0,5,0"/>
             <Button Content="{materialDesign:PackIcon Kind=DataUsage}" Command="{Binding NavigateToVisualiser}" ToolTip="Visualizer"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
+            <Button Content="{materialDesign:PackIcon Kind=Settings}" Command="{Binding NavigateToSettings}" ToolTip="Home" Margin="0,0,5,0"/>
         </StackPanel>
     </Grid>
 </Window>

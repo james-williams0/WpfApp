@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using WpfApp.Model.Interfaces;
 using WpfApp.ViewModel.Helper;
 using WpfApp.ViewModel.Interfaces;
 
@@ -77,8 +78,9 @@ namespace WpfApp.ViewModel
          }
       }
 
-      public NotepadViewModel(RichTextBox mainRTB)
+      public NotepadViewModel(RichTextBox mainRTB, ISettings settings)
       {
+         globalSettings = settings;
          mainRTBProperty = mainRTB;
          windowTheme = Theme.Dark;
       }
@@ -137,13 +139,13 @@ namespace WpfApp.ViewModel
       }
 
       public void OnNavigateTo()
-      {
-         throw new NotImplementedException();
+      {  
       }
 
       public void OnNavigateAway()
-      {
-         throw new NotImplementedException();
+      {  
       }
+
+      private ISettings globalSettings;
    }
 }

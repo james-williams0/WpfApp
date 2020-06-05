@@ -2,30 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WpfApp.Model.Interfaces;
 using WpfApp.ViewModel.Helper;
 using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-    public class DataVisualiserViewModel : OnPropertyChangedImplementation, INavigatable
-    {
-
-      private IBaseTheme windowTheme;
-
-      public IBaseTheme WindowTheme
+   public class DataVisualiserViewModel : OnPropertyChangedImplementation, INavigatable
+   {
+      public DataVisualiserViewModel(ISettings settings)
       {
-         get { return windowTheme; }
-         set { windowTheme = value; }
+         globalSettings = settings;
       }
 
       public void OnNavigateAway()
-        {
-            throw new NotImplementedException();
-        }
+      {       
+      }
 
-        public void OnNavigateTo()
-        {
-            throw new NotImplementedException();
-        }
-    }
+      public void OnNavigateTo()
+      {
+      }
+      private ISettings globalSettings;
+   }
 }
