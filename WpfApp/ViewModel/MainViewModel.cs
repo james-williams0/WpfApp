@@ -1,13 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using System.Diagnostics;
 using System.Windows.Input;
-using System.Windows.Media;
 using WpfApp.Model;
 using WpfApp.ViewModel.Helper;
 using WpfApp.ViewModel.Interfaces;
@@ -16,10 +10,7 @@ namespace WpfApp.ViewModel
 {
    public class MainViewModel : OnPropertyChangedImplementation
    {
-      public TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
-
-      private INavigatable currentView;
-      private IBaseTheme theme;
+      private TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
 
       public INavigatable CurrentView
       {
@@ -31,24 +22,15 @@ namespace WpfApp.ViewModel
          }
       }
 
-      public IBaseTheme WindowTheme
-      {
-         get { return theme; }
-         set { theme = value; OnPropertyChanged(); }
-      }
       public MainViewModel()
       {
-         WindowTheme = Theme.Dark;
-         CurrentView = Factory.Notepad;
+         CurrentView = Factory.CreateNotepadVM();
+         ThemeSetter.SetApplicationTheme(Factory.SettingsStorage.WindowTheme.AsBaseTheme());
       }
+
       public ICommand NavigateToVisualiser
       {
          get { return new RelayCommand<object>(p => VisualiserNavigate()); }
-      }
-
-      public void VisualiserNavigate()
-      {
-         CurrentView = Factory.DataVisualiser;
       }
 
       public ICommand NavigateToHome
@@ -56,9 +38,32 @@ namespace WpfApp.ViewModel
          get { return new RelayCommand<object>(p => HomeNavigate()); }
       }
 
+      public ICommand NavigateToSettings
+      {
+         get { return new RelayCommand<object>(p => SettingsNavigate()); }
+      }
+
+      public void SettingsNavigate()
+      {
+         CurrentView.OnNavigateAway();
+         CurrentView = Factory.CreateSettingsVM();
+         CurrentView.OnNavigateTo();
+      }
+
       public void HomeNavigate()
       {
-         CurrentView = Factory.Notepad;
+         CurrentView.OnNavigateAway();
+         CurrentView = Factory.CreateNotepadVM();
+         CurrentView.OnNavigateTo();
       }
+
+      public void VisualiserNavigate()
+      {
+         CurrentView.OnNavigateAway();
+         CurrentView = Factory.CreateDataVisualiserVM();
+         CurrentView.OnNavigateTo();
+      }
+
+      private INavigatable currentView;
    }
 }

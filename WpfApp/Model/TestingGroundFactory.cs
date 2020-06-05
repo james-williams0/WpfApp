@@ -1,25 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using WpfApp.Model.Interfaces;
 using WpfApp.ViewModel;
 
 namespace WpfApp.Model
 {
-    public class TestingGroundFactory
-    {
-        public NotepadViewModel Notepad { get; set; }
+   public class TestingGroundFactory
+   {
+      public ISettings SettingsStorage { get; } 
 
-        public DataVisualiserViewModel DataVisualiser { get; set; }
+      public TestingGroundFactory()
+      {
+         SettingsStorage = new Settings();
+         SettingsStorage.Load();
+         mainRTB = new RichTextBox();
+      }
 
-        private RichTextBox mainRTB;
-        public TestingGroundFactory()
-        {
-            mainRTB = new RichTextBox();
+      public NotepadViewModel CreateNotepadVM()
+      {
+         return new NotepadViewModel(mainRTB, SettingsStorage);
+      }
 
-            Notepad = new NotepadViewModel(mainRTB);
+      public DataVisualiserViewModel CreateDataVisualiserVM()
+      {
+         return new DataVisualiserViewModel(SettingsStorage);
+      }
 
-            DataVisualiser = new DataVisualiserViewModel();
-        }
-    }
+      public SettingsViewModel CreateSettingsVM()
+      {
+         return new SettingsViewModel(SettingsStorage);
+      }
+
+      private RichTextBox mainRTB;
+   }
 }

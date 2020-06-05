@@ -6,13 +6,6 @@
              xmlns:vm="clr-namespace:WpfApp.ViewModel"
              xmlns:local="clr-namespace:WpfApp.View"
              mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             TextElement.FontWeight="Medium"
-             materialDesign:ThemeAssist.Theme="{Binding WindowTheme}"
-             TextElement.FontSize="14"
-             FontFamily="{materialDesign:MaterialDesignFont}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
