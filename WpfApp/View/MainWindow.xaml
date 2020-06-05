@@ -20,7 +20,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <Grid.Resources>
