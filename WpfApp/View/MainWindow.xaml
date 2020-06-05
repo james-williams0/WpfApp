@@ -41,7 +41,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
-            <Button Content="{materialDesign:PackIcon Kind=Settings}" Command="{Binding NavigateToSettings}" ToolTip="Home" Margin="0,0,5,0"/>
+            <Button Content="{materialDesign:PackIcon Kind=Settings}" Command="{Binding NavigateToSettings}" ToolTip="Settings" Margin="0,0,5,0"/>
         </StackPanel>
     </Grid>
 </Window>
