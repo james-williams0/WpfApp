@@ -50,7 +50,7 @@ namespace WpfApp.ViewModel
 
       private void SetBaseColour()
       {
-         ThemeSetter.SetBaseColour(CurrentTheme.AsBaseTheme());
+         ThemeSetter.SetApplicationTheme(CurrentTheme.AsBaseTheme());
          globalSettings.WindowTheme = CurrentTheme;
          globalSettings.Save();
       }

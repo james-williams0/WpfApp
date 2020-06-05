@@ -25,7 +25,7 @@ namespace WpfApp.ViewModel
       public MainViewModel()
       {
          CurrentView = Factory.CreateNotepadVM();
-         ThemeSetter.SetBaseColour(Factory.SettingsStorage.WindowTheme.AsBaseTheme());
+         ThemeSetter.SetApplicationTheme(Factory.SettingsStorage.WindowTheme.AsBaseTheme());
       }
 
       public ICommand NavigateToVisualiser
