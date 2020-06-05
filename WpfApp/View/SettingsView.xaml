@@ -12,10 +12,18 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" Content="Theme" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <ComboBox  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" ItemsSource="{Binding Themes, Mode=TwoWay}" SelectedItem="{Binding CurrentTheme, Mode=TwoWay}"/>
+        <Label Grid.Row="0"
+               Content="Theme"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+        
+        <ComboBox Grid.Row="0"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  ItemsSource="{Binding Themes, Mode=TwoWay}"
+                  SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" />
     </Grid>
 </UserControl>

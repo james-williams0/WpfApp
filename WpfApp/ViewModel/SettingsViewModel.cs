@@ -19,7 +19,7 @@ namespace WpfApp.ViewModel
          {
             currentTheme = value;
             OnPropertyChanged();
-            SetBaseColour();
+            SetApplicationTheme();
          }
       }
 
@@ -39,7 +39,7 @@ namespace WpfApp.ViewModel
 
       public void OnNavigateTo()
       {
-         currentTheme = globalSettings.WindowTheme;
+         CurrentTheme = globalSettings.WindowTheme;
       }
 
       public SettingsViewModel(ISettings settings)
@@ -48,7 +48,7 @@ namespace WpfApp.ViewModel
          globalSettings = settings;
       }
 
-      private void SetBaseColour()
+      private void SetApplicationTheme()
       {
          ThemeSetter.SetApplicationTheme(CurrentTheme.AsBaseTheme());
          globalSettings.WindowTheme = CurrentTheme;
