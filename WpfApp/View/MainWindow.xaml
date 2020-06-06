@@ -36,12 +36,33 @@
         <ContentControl Content="{Binding CurrentView}" Grid.Row="1" />
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Content="{materialDesign:PackIcon Kind=Home}" Command="{Binding NavigateToHome}" ToolTip="Home" Margin="0,0,5,0"/>
-            <Button Content="{materialDesign:PackIcon Kind=DataUsage}" Command="{Binding NavigateToVisualiser}" ToolTip="Visualizer"/>
+            <Button Content="{materialDesign:PackIcon Kind=Home,Size=32}" 
+                    Command="{Binding NavigateToHome}" 
+                    Width="64"
+                    Height="64"
+                    ToolTip="Home" 
+                    Margin="0,0,5,0"/>
+            <Button Content="{materialDesign:PackIcon Kind=DataUsage, Size=32}" 
+                    Command="{Binding NavigateToVisualiser}" 
+                    Width="64"
+                    Height="64"
+                    ToolTip="Visualizer"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
-            <Button Content="{materialDesign:PackIcon Kind=Settings}" Command="{Binding NavigateToSettings}" ToolTip="Settings" Margin="0,0,5,0"/>
+        <StackPanel Orientation="Horizontal" 
+                    Margin="10" 
+                    HorizontalAlignment="Right">
+            <Grid>
+                <Button IsCancel="True" Height="64" Width="64" Content="{materialDesign:PackIcon Kind=Settings, Size=32}"/>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" PopupMode="Click" Height="64" Width="64" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon Kind="None"/>
+                    </materialDesign:PopupBox.ToggleContent>
+                    <ContentControl Content="{Binding SettingsView}" />
+                </materialDesign:PopupBox>
+            </Grid>
         </StackPanel>
+
+
     </Grid>
 </Window>

@@ -10,7 +10,7 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-   public class SettingsViewModel : OnPropertyChangedImplementation, INavigatable
+   public class SettingsViewModel : OnPropertyChangedImplementation
    {
       public StoredTheme CurrentTheme
       {
@@ -33,20 +33,12 @@ namespace WpfApp.ViewModel
          }
       }
 
-      public void OnNavigateAway()
-      {
-      }
-
-      public void OnNavigateTo()
-      {
-         CurrentTheme = globalSettings.WindowTheme;
-      }
-
       public SettingsViewModel(ISettings settings)
       {
          Themes = new ObservableCollection<StoredTheme> { StoredTheme.Dark , StoredTheme.Light };
          globalSettings = settings;
-      }
+         CurrentTheme = globalSettings.WindowTheme;
+        }
 
       private void SetApplicationTheme()
       {
