@@ -8,62 +8,62 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-   public class MainViewModel : OnPropertyChangedImplementation
-   {
-      private TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
+    public class MainViewModel : OnPropertyChangedImplementation
+    {
+        private TestingGroundFactory Factory { get; set; } = new TestingGroundFactory();
 
-      public INavigatable CurrentView
-      {
-         get { return currentView; }
-         set
-         {
-            currentView = value;
-            OnPropertyChanged();
-         }
-      }
+        public INavigatable CurrentView
+        {
+            get { return currentView; }
+            set
+            {
+                currentView = value;
+                OnPropertyChanged();
+            }
+        }
 
-      public MainViewModel()
-      {
-         CurrentView = Factory.CreateNotepadVM();
-         ThemeSetter.SetApplicationTheme(Factory.SettingsStorage.WindowTheme.AsBaseTheme());
-      }
+        public SettingsViewModel SettingsView
+        {
+            get { return settingsView; }
+            set
+            {
+                settingsView = value;
+                OnPropertyChanged();
+            }
+        }
 
-      public ICommand NavigateToVisualiser
-      {
-         get { return new RelayCommand<object>(p => VisualiserNavigate()); }
-      }
+        public MainViewModel()
+        {
+            CurrentView = Factory.CreateNotepadVM();
+            ThemeSetter.SetApplicationTheme(Factory.SettingsStorage.WindowTheme.AsBaseTheme());
+            SettingsView = Factory.CreateSettingsVM();
+        }
 
-      public ICommand NavigateToHome
-      {
-         get { return new RelayCommand<object>(p => HomeNavigate()); }
-      }
+        public ICommand NavigateToVisualiser
+        {
+            get { return new RelayCommand<object>(p => VisualiserNavigate()); }
+        }
 
-      public ICommand NavigateToSettings
-      {
-         get { return new RelayCommand<object>(p => SettingsNavigate()); }
-      }
+        public ICommand NavigateToHome
+        {
+            get { return new RelayCommand<object>(p => HomeNavigate()); }
+        }
 
-      public void SettingsNavigate()
-      {
-         CurrentView.OnNavigateAway();
-         CurrentView = Factory.CreateSettingsVM();
-         CurrentView.OnNavigateTo();
-      }
+        public void HomeNavigate()
+        {
+            CurrentView.OnNavigateAway();
+            CurrentView = Factory.CreateNotepadVM();
+            CurrentView.OnNavigateTo();
+        }
 
-      public void HomeNavigate()
-      {
-         CurrentView.OnNavigateAway();
-         CurrentView = Factory.CreateNotepadVM();
-         CurrentView.OnNavigateTo();
-      }
+        public void VisualiserNavigate()
+        {
+            CurrentView.OnNavigateAway();
+            CurrentView = Factory.CreateDataVisualiserVM();
+            CurrentView.OnNavigateTo();
+        }
 
-      public void VisualiserNavigate()
-      {
-         CurrentView.OnNavigateAway();
-         CurrentView = Factory.CreateDataVisualiserVM();
-         CurrentView.OnNavigateTo();
-      }
-
-      private INavigatable currentView;
-   }
+        private INavigatable currentView;
+        private SettingsViewModel settingsView;
+    }
 }
