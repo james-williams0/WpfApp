@@ -31,6 +31,6 @@ namespace WpfApp.Model
          Language = settings.Language;
       }
 
-      private const string fileName = "Settings.Json";
+      private const string fileName = "Settings.json";
    }
 }
