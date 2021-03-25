@@ -8,20 +8,21 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-   public class DataVisualiserViewModel : OnPropertyChangedImplementation, INavigatable
-   {
-      public DataVisualiserViewModel(ISettings settings)
-      {
-         globalSettings = settings;
-      }
+	public class DataVisualiserViewModel : OnPropertyChangedImplementation, INavigatable
+	{
+		public DataVisualiserViewModel(ISettings settings)
+		{
+			globalSettings = settings;
+		}
 
-      public void OnNavigateAway()
-      {       
-      }
+		public void OnNavigateAway()
+		{
+		}
 
-      public void OnNavigateTo()
-      {
-      }
-      private ISettings globalSettings;
-   }
+		public void OnNavigateTo()
+		{
+		}
+
+		private ISettings globalSettings;
+	}
 }

@@ -2,14 +2,14 @@
 
 namespace WpfApp.Model.Interfaces
 {
-   public interface ISettings
-   {
-      StoredTheme WindowTheme { get; set; }
+	public interface ISettings
+	{
+		StoredTheme WindowTheme { get; set; }
 
-      int Language { get; set; }
+		int Language { get; set; }
 
-      public void Save();
+		public void Save();
 
-      public void Load();
-   }
+		public void Load();
+	}
 }

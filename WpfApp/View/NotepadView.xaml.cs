@@ -13,14 +13,14 @@ using System.Windows.Shapes;
 
 namespace WpfApp.View
 {
-    /// <summary>
-    /// Interaction logic for NotepadView.xaml
-    /// </summary>
-    public partial class NotepadView : UserControl
-    {
-        public NotepadView()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for NotepadView.xaml
+	/// </summary>
+	public partial class NotepadView : UserControl
+	{
+		public NotepadView()
+		{
+			InitializeComponent();
+		}
+	}
 }

@@ -2,10 +2,10 @@
 
 namespace WpfApp.ViewModel.Interfaces
 {
-    public interface INavigatable
-    {
-      void OnNavigateTo();
+	public interface INavigatable
+	{
+		void OnNavigateTo();
 
-      void OnNavigateAway();
-    }
+		void OnNavigateAway();
+	}
 }

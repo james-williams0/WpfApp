@@ -13,14 +13,14 @@ using System.Windows.Shapes;
 
 namespace WpfApp.View
 {
-    /// <summary>
-    /// Interaction logic for DataVisualiser.xaml
-    /// </summary>
-    public partial class DataVisualiser : UserControl
-    {
-        public DataVisualiser()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for DataVisualiser.xaml
+	/// </summary>
+	public partial class DataVisualiser : UserControl
+	{
+		public DataVisualiser()
+		{
+			InitializeComponent();
+		}
+	}
 }

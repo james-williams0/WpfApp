@@ -10,45 +10,45 @@ using WpfApp.ViewModel.Interfaces;
 
 namespace WpfApp.ViewModel
 {
-   public class SettingsViewModel : OnPropertyChangedImplementation
-   {
-      public StoredTheme CurrentTheme
-      {
-         get { return currentTheme; }
-         set
-         {
-            currentTheme = value;
-            OnPropertyChanged();
-            SetApplicationTheme();
-         }
-      }
+	public class SettingsViewModel : OnPropertyChangedImplementation
+	{
+		public StoredTheme CurrentTheme
+		{
+			get { return currentTheme; }
+			set
+			{
+				currentTheme = value;
+				OnPropertyChanged();
+				SetApplicationTheme();
+			}
+		}
 
-      public ObservableCollection<StoredTheme> Themes
-      {
-         get { return themes; }
-         set
-         {
-            themes = value;
-            OnPropertyChanged();
-         }
-      }
+		public ObservableCollection<StoredTheme> Themes
+		{
+			get { return themes; }
+			set
+			{
+				themes = value;
+				OnPropertyChanged();
+			}
+		}
 
-      public SettingsViewModel(ISettings settings)
-      {
-         Themes = new ObservableCollection<StoredTheme> { StoredTheme.Dark , StoredTheme.Light };
-         globalSettings = settings;
-         CurrentTheme = globalSettings.WindowTheme;
-        }
+		public SettingsViewModel(ISettings settings)
+		{
+			Themes = new ObservableCollection<StoredTheme> { StoredTheme.Dark, StoredTheme.Light };
+			globalSettings = settings;
+			CurrentTheme = globalSettings.WindowTheme;
+		}
 
-      private void SetApplicationTheme()
-      {
-         ThemeSetter.SetApplicationTheme(CurrentTheme.AsBaseTheme());
-         globalSettings.WindowTheme = CurrentTheme;
-         globalSettings.Save();
-      }
+		private void SetApplicationTheme()
+		{
+			ThemeSetter.SetApplicationTheme(CurrentTheme.AsBaseTheme());
+			globalSettings.WindowTheme = CurrentTheme;
+			globalSettings.Save();
+		}
 
-      private StoredTheme currentTheme;
-      private ISettings globalSettings;
-      private ObservableCollection<StoredTheme> themes;
-   }
+		private StoredTheme currentTheme;
+		private ISettings globalSettings;
+		private ObservableCollection<StoredTheme> themes;
+	}
 }
